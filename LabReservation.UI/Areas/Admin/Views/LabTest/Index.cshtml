@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LabReservation.UI.Areas.Admin.Models.LabTestSelectModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TestName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LabName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fees)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fees)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Create", new { LabId = item.LabId  }) |
+                @Html.ActionLink("Delete", "Delete", new {  TestId=item.TestId , LabId = item.LabId  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,40 @@
+﻿@model LabReservation.UI.Areas.Admin.Models.LabModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>LabModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Labs" method="post">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label>Lab Name</label>
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="HomeFees" class="control-label">Home Fees</label>
+                @Html.EditorFor(model => model.HomeFees, new { htmlAttributes = new { @class = "form-control" } })
+                <span asp-validation-for="HomeFees" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

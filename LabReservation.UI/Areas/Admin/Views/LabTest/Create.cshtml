@@ -1,0 +1,72 @@
+﻿@model LabReservation.UI.Areas.Admin.Models.LabTestModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>LabTestModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="LabTest" method="post">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.IsAdd)
+            @Html.HiddenFor(m => m.LabId)
+            <div class="form-group">
+                <label asp-for="Fees" class="control-label">Lab Name</label>
+                @Html.EditorFor(model => model.Lab.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+            <div class="form-group">
+                <label asp-for="AllTests" class="control-label">Select Tests</label>
+
+                <table id="TestGrids" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Test Name</th>
+                            <th>Fees</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @for (int i = 0; i < Model.SelectedTests.Count(); i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.CheckBoxFor(m => m.SelectedTests[i].Selected)
+                                </td>
+
+                                <td style="display:none;">
+                                    @Html.HiddenFor(m => m.SelectedTests[i].LabId)
+                                </td>
+                                <td style="display:none;">
+                                    @Html.HiddenFor(m => m.SelectedTests[i].TestId)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(m => m.SelectedTests[i].TestName)
+                                </td>
+                                <td>@Html.EditorFor(m => m.SelectedTests[i].Fees)</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
