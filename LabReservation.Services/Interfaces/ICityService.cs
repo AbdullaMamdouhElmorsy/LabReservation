@@ -1,11 +1,11 @@
-﻿using LabReservation.Data.Entities;
+﻿using WebApplication.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LabReservation.Services.Interfaces
+namespace WebApplication.Services.Interfaces
 {
    public interface ICityService
     {

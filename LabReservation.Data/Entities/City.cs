@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace LabReservation.Data.Entities
+namespace WebApplication.Data.Entities
 {
     public partial class City
     {
